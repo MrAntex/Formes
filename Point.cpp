@@ -29,14 +29,3 @@ void Point::dessiner(RenderWindow& fenetre, bool isactive) const
 	pt.setFillColor(couleur);
 	fenetre.draw(pt);
 }
-/*
-void Point::swapCoul(){
-	if (swapped){
-		Color tmp = couleur;
-		couleur = deux_couleur;
-		deux_couleur = tmp;
-
-
-
-	}
-}*/

@@ -17,8 +17,6 @@ class Point
 	/*static*/ float /*const*/ taille = 5.0f;
 	Vector2f ancre;
 	Color couleur = Color::Black;
-	Color deux_couleur = Color::Red;
-	bool swapped = false;
 
 public:
 	//Différentes initialisations de points
@@ -38,14 +36,9 @@ public:
 
 	void setAncre(Vector2f _ancre) { ancre = _ancre; };
 
-	void setColor(Color coul) { couleur = coul; }
-
 	bool isOver(Vector2f _ancre) const;
 
 	void dessiner(RenderWindow& fenetre, bool isactive = false) const;
-
-	inline void swapCoul();
-	
 
 };
 

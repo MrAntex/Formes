@@ -20,18 +20,13 @@ Formes::~Formes()
 
 void Formes::ajouter(Forme*forme)
 {
-	try {
-		if (nbFormes >= maxFormes)
-		{
-			throw runtime_error("plus de place");
-		}
-		else
-		{
-			formes[nbFormes++] = forme;
-		}
+	if (nbFormes >= maxFormes)
+	{
+		throw runtime_error("plus de place");
 	}
-	catch (runtime_error e) {
-		cout << "Error de place";
+	else
+	{
+		formes[nbFormes++] = forme;
 	}
 }
 
@@ -48,6 +43,18 @@ Forme *Formes::isOver(Vector2f curseur)
 	for (size_t i = 0; i < nbFormes; i++)
 	{
 		if (formes[i]->isOver(curseur))
+		{
+			return formes[i];
+		}
+	}
+	return nullptr;
+}
+
+Forme *Formes::modif(Vector2f curseur)
+{
+	for (size_t i = 0; i < nbFormes; i++)
+	{
+		if (formes[i]->modif(curseur))
 		{
 			return formes[i];
 		}

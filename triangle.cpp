@@ -5,8 +5,24 @@ Triangle::Triangle(Point _ancre, Point _a2, Point _a3, Color coul)
 	: Forme(_ancre, coul), a2(_a2), a3(_a3)
 {}
 
-Triangle::Triangle(const Triangle& orig) : Triangle(orig.getPoint().getAncre(), orig.a2, orig.a3, orig.getColor())
+Triangle::Triangle(const Triangle& orig) : Triangle(orig.getPoint(), orig.a2, orig.a3, orig.getColor())
 {}
+
+Triangle::~Triangle()
+{}
+
+
+bool Triangle::isOver(Vector2f curseur)
+{
+	return false;
+}
+
+bool Triangle::modif(Vector2f curseur)
+{
+	return false;
+}
+
+
 
 void Triangle::dessiner(RenderWindow& fenetre, bool isactive) const
 {
