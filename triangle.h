@@ -30,5 +30,7 @@ class Triangle : public Forme
 
 		virtual void dessiner(RenderWindow& fenetre, bool isactive = false) const;
 
+		virtual bool isOver(Vector2f curseur);
+		Vector2f getCentre();
 };
 #endif
