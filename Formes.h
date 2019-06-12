@@ -56,6 +56,10 @@ public:
 	uint pulse(uint mil, uint epp);
 
 	void coulSwap(uint mili);
+
+	void monterForme(Forme* forme);
+
+	void descendreForme(Forme* forme);
 };
 
 #endif

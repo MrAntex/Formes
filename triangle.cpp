@@ -9,6 +9,8 @@ Triangle::Triangle(Point _ancre, Point _a2, Point _a3, Color coul)
 Triangle::Triangle(const Triangle& orig) : Triangle(orig.getPoint().getAncre(), orig.a2, orig.a3, orig.getColor())
 {}
 
+Triangle::~Triangle(){}
+
 void Triangle::dessiner(RenderWindow& fenetre, bool isactive) const
 {
 		ConvexShape triangle;

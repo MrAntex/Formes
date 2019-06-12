@@ -54,7 +54,7 @@ Vector2f n2 = Vector2f(100, 300);
 Vector2f n3 = Vector2f(300, 300);
 
 //image
-String bite = "bite.png";
+String image_nom = "fleur_2.png";
 
 /*
 void Deplacement(Rectangle& form, RenderWindow& window)
@@ -98,19 +98,21 @@ Forme* ptrforme = nullptr;
 Forme* ptrforme2 = nullptr;
 Forme* selected = nullptr;
 
+bool first = true;
 
 
 int main()
 {
 	bool dep = false, clig = false, pul = false, coul = false;
 	bool Bclig = false, Bpul = false, Bcoul = false;
-	bool BsR = false, BsG = false, BsB = false;
+	bool BsR = false, BsG = false, BsB = false, BsA = false;
+	
 	uint tempoClig = 300;
 	uint tempoCoul = 60;
 	uint tempoPul = 30;
 	uint epp = 1;
 
-	uint Sr = 127, Sg = 127, Sb = 127;
+	uint Sr = 127, Sg = 127, Sb = 127, Sa = 255;
 
 
 	// Fenetre principale
@@ -254,31 +256,35 @@ int main()
 
 
 
-	Bouton BRg(Vector2f(30, 220), Vector2f(20, 20), "<", Color::Black, gris, 4, 2);
-	Bouton BR(Vector2f(70, 220), Vector2f(60, 20), "R", Color::Black, gris, 4, 2); // rajouter le rect de couleur derriere
-	Bouton BRd(Vector2f(150, 220), Vector2f(20, 20), ">", Color::Black, gris, 4, 2);
+	Bouton BRg(Vector2f(30, 210), Vector2f(20, 20), "<", Color::Black, gris, 4, 2);
+	Bouton BR(Vector2f(70, 210), Vector2f(60, 20), "R", Color::Black, gris, 4, 2, rouge); // rajouter le rect de couleur derriere
+	Bouton BRd(Vector2f(150, 210), Vector2f(20, 20), ">", Color::Black, gris, 4, 2);
 
-	Bouton BGg(Vector2f(30, 270), Vector2f(20, 20), "<", Color::Black, gris, 4, 2);
-	Bouton BG(Vector2f(70, 270), Vector2f(60, 20), "G", Color::Black, gris, 4, 2); // rajouter le rect de couleur derriere
-	Bouton BGd(Vector2f(150, 270), Vector2f(20, 20), ">", Color::Black, gris, 4, 2);
+	Bouton BGg(Vector2f(30, 250), Vector2f(20, 20), "<", Color::Black, gris, 4, 2);
+	Bouton BG(Vector2f(70, 250), Vector2f(60, 20), "G", Color::Black, gris, 4, 2, vert); // rajouter le rect de couleur derriere
+	Bouton BGd(Vector2f(150, 250), Vector2f(20, 20), ">", Color::Black, gris, 4, 2);
 
-	Bouton BBg(Vector2f(30, 320), Vector2f(20, 20), "<", Color::Black, gris, 4, 2);
-	Bouton BB(Vector2f(70, 320), Vector2f(60, 20), "B", Color::Black, gris, 4, 2); // rajouter le rect de couleur derriere
-	Bouton BBd(Vector2f(150, 320), Vector2f(20, 20), ">", Color::Black, gris, 4, 2);
+	Bouton BBg(Vector2f(30, 290), Vector2f(20, 20), "<", Color::Black, gris, 4, 2);
+	Bouton BB(Vector2f(70, 290), Vector2f(60, 20), "B", Color::Black, gris, 4, 2, bleu); // rajouter le rect de couleur derriere
+	Bouton BBd(Vector2f(150, 290), Vector2f(20, 20), ">", Color::Black, gris, 4, 2);
+
+	Bouton BAg(Vector2f(30, 330), Vector2f(20, 20), "<", Color::Black, gris, 4, 2);
+	Bouton BA(Vector2f(70, 330), Vector2f(60, 20), "A", Color::Black, gris, 4, 2); // rajouter le rect de couleur derriere
+	Bouton BAd(Vector2f(150, 330), Vector2f(20, 20), ">", Color::Black, gris, 4, 2);
 
 
 	
 	Bouton BV(Vector2f(50, 400), Vector2f(100, 50), "Valider", Color::Black, gris, 4, 1); // rajouter le rect derriere
 
 	RectangleShape RectValid(Vector2f(100, 50));
-	RectValid.setFillColor(Color(Sr,Sg,Sb));
+	RectValid.setFillColor(Color(Sr,Sg,Sb,Sa));
 	RectValid.setPosition(50, 400);
 
 	Text rgb;
-	rgb.setString("( " + to_string(Sr) + " , " + to_string(Sg) + " , " + to_string(Sb) + " )");
+	rgb.setString("( " + to_string(Sr) + " , " + to_string(Sg) + " , " + to_string(Sb) + " , " + to_string(Sa) + " )");
 	rgb.setFont(FKufi);
 	rgb.setFillColor(Color::Black);
-	rgb.setPosition(Vector2f(35, 360));
+	rgb.setPosition(Vector2f(20, 360));
 	rgb.setCharacterSize(20);
 
 
@@ -304,8 +310,8 @@ int main()
 	tab_formes.ajouter(&C);
 	//C.dessiner(window, true);
 
-	Ellipse E(Point(Vector2f(50, 200)), Vector2f(50, 150), violet);
-	tab_formes.ajouter(&E);
+	//Ellipse E(Point(Vector2f(50, 200)), Vector2f(50, 150), violet);
+	//tab_formes.ajouter(&E);
 //	tab_formes.supprimer(&C);
 
 	Triangle T(a, b, c, rouge);
@@ -316,7 +322,8 @@ int main()
 	tab_formes.ajouter(&LeRect);
 	//tab_formes.supprimer(&LeRect);
 	
-	Img I(Point(Vector2f(325, 400)), bite);
+	Img I(Point(Vector2f(325, 400)), image_nom);
+	tab_formes.ajouter(&I);
 
 		// Tant que la fenetre principale est ouverte
 		while (window.isOpen())
@@ -337,6 +344,9 @@ int main()
 		{
 			if (event.type == Event::Closed)
 				window.close(); // si on ferme la fenetre, elle se ferme :)
+
+			
+
 
 			if (event.type == sf::Event::KeyPressed) {
 				if (event.key.code == sf::Keyboard::M) {
@@ -366,6 +376,25 @@ int main()
 					//sf::sleep(sf::milliseconds(300));
 
 				}
+
+				if (event.key.code == sf::Keyboard::Up && window.hasFocus() && selected != nullptr) {
+					tab_formes.monterForme(selected);
+				}
+				if (event.key.code == sf::Keyboard::Down && window.hasFocus() && selected != nullptr) {
+					tab_formes.descendreForme(selected);
+				}
+				if (event.key.code == sf::Keyboard::Right && window.hasFocus() && selected != nullptr) {
+						selected->setEpaiss(selected->getBEpaiss() + 1);
+						selected->setBEpaiss(selected->getBEpaiss() + 1);
+					
+				}
+				if (event.key.code == sf::Keyboard::Left && window.hasFocus() && selected != nullptr) {
+					if (selected->getBEpaiss() > 0 && selected->getEpaiss() > 0) {
+						selected->setEpaiss(selected->getBEpaiss() - 1);
+						selected->setBEpaiss(selected->getBEpaiss() - 1);
+					}
+
+				} 
 			}
 
 			if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) {
@@ -424,16 +453,16 @@ int main()
 			}
 			if (event.type == Event::KeyPressed && event.key.code == Keyboard::C)
 			{
-
+				
 				cout << "C" << endl;
 				clig = !clig;
 				tab_formes.flash(tempoClig);
-				if (dep) {
+				
 					if (selected != nullptr) {
 						selected->cligno();
 
 					}
-				}
+				
 				else {
 					tab_formes.clignAll();
 				}
@@ -453,12 +482,12 @@ int main()
 					tab_formes.resetEppaiss();
 					epp = 1;
 				}
-				if (dep) {
+				
 					if (selected != nullptr) {
 						selected->pul();
 
 					}
-				}
+				
 				else {
 					tab_formes.pulAll();
 				}
@@ -486,12 +515,12 @@ int main()
 				if (!coul) {
 					
 				}
-				if (dep) {
+				
 					if (selected != nullptr) {
 						selected->coul();
 
 					}
-				}
+				
 				else {
 					tab_formes.coulAll();
 				}
@@ -571,19 +600,16 @@ int main()
 				// Si clic gauche relaché
 				if (bRect.test_clic(Vector2f(event.mouseButton.x, event.mouseButton.y))) {
 					// si souris sur le bouton du rectangle
-					cout << "Rectangle relaché" << endl; // debug
 					bRect.swap(); // changement a nouveau de la couleur
 				}
 
 				if (bTrig.test_clic(Vector2f(event.mouseButton.x, event.mouseButton.y))) {
 					// Si Triangle
-					cout << "Triangle relaché" << endl;
 					bTrig.swap();
 				}
 
 				if (bPnt.test_clic(Vector2f(event.mouseButton.x, event.mouseButton.y))) {
 					// Si Point
-					cout << "Point relaché" << endl;
 					bPnt.swap();
 
 					
@@ -591,7 +617,6 @@ int main()
 
 				if (bCerc.test_clic(Vector2f(event.mouseButton.x, event.mouseButton.y))) {
 					// Si Cercle
-					cout << "Cercle relaché" << endl;
 					bCerc.swap();
 				}
 			}
@@ -740,7 +765,6 @@ int main()
 				// Si clic gauche relaché
 				if (bRet.test_clic(Vector2f(event.mouseButton.x, event.mouseButton.y))) {
 					// si souris sur le bouton du rectangle
-					cout << "Retour relaché" << endl; // debug
 					bRet.swap(); // changement a nouveau de la couleur
 					Vmenu = 1;
 					menu2.setVisible(false);
@@ -873,6 +897,16 @@ int main()
 						BsB = false;
 					}
 					}
+					else if (BA.test_clic(souris)) {
+					if (BA.getCouleurBout() != BB.getCouleurSec()) { // est cliqué
+						BA.swap(); // on change la couleur du bouton
+						BsA = true;
+					}
+					else {
+						BA.swap(); // on change la couleur du bouton
+						BsA = false;
+					}
+					}
 					else if (BRd.test_clic(souris)) {
 						
 					}
@@ -892,11 +926,13 @@ int main()
 						
 					}
 					else if (BV.test_clic(souris)) {
-						selected->setColor(Color(Sr, Sg, Sb));
-						selected->setColor2(Color(Sr, Sg, Sb));
+						selected->setColor(Color(Sr, Sg, Sb, Sa));
+						selected->setColor2(Color(Sr, Sg, Sb, Sa));
 
-						selected->setCoulBord(Color(Sr, Sg, Sb));
-						selected->setCoulBord2(Color(Sr, Sg, Sb));
+						selected->setCoulBord(Color(Sr, Sg, Sb,Sa));
+						selected->setCoulBord2(Color(Sr, Sg, Sb,Sa));
+
+						
 					}
 				}
 			}
@@ -912,9 +948,12 @@ int main()
 				if (BsB && Sb < 255) {
 					Sb = Sb + 2;
 				}
+				if (BsA && Sa < 255) {
+					Sa = Sa + 2;
+				}
 
-				RectValid.setFillColor(Color(Sr, Sg, Sb));
-				rgb.setString("( " + to_string(Sr) + " , " + to_string(Sg) + " , " + to_string(Sb) + " )");
+				RectValid.setFillColor(Color(Sr, Sg, Sb, Sa));
+				rgb.setString("( " + to_string(Sr) + " , " + to_string(Sg) + " , " + to_string(Sb) + " , " + to_string(Sa) + " )");
 			}
 
 			if (event.type == Event::KeyPressed && event.key.code == Keyboard::Left) {
@@ -927,9 +966,12 @@ int main()
 				if (BsB && Sb > 0) {
 					Sb = Sb - 2;
 				}
+				if (BsA && Sa > 0) {
+					Sa = Sa - 2;
+				}
 
-				RectValid.setFillColor(Color(Sr, Sg, Sb));
-				rgb.setString("( " + to_string(Sr) + " , " + to_string(Sg) + " , " + to_string(Sb) + " )");
+				RectValid.setFillColor(Color(Sr, Sg, Sb,Sa));
+				rgb.setString("( " + to_string(Sr) + " , " + to_string(Sg) + " , " + to_string(Sb) + " , " + to_string(Sa) +  " )");
 
 			}
 
@@ -942,74 +984,78 @@ int main()
 		window.draw(fond);
 		tab_formes.dessiner(window, tab_formes.isOver(Vector2f(Mouse::getPosition(window))));
 
-		menu1.clear(); // Clear de la fenetre de menu
-		menu1.draw(fondMenu); // Ajout du fond blanc du menu
-		menu2.draw(fondMenu); // Ajout du fond blanc du menu
+		if (menu1.hasFocus() || first) {
+			menu1.clear(); // Clear de la fenetre de menu
+			menu1.draw(fondMenu); // Ajout du fond blanc du menu
 
-		// Affichage des icones des formes
-		menu1.draw(Ipnt);
-		menu1.draw(Irect);
-		menu1.draw(Icerc);
-		menu1.draw(Itrig);
+			// Affichage des icones des formes
+			menu1.draw(Ipnt);
+			menu1.draw(Irect);
+			menu1.draw(Icerc);
+			menu1.draw(Itrig);
 
-		// Affichage des boutons des formes
-		bRect.afficher(menu1, FKufi);
-		bCerc.afficher(menu1, FKufi);
-		bTrig.afficher(menu1, FKufi);
-		bPnt.afficher(menu1, FKufi);
+			// Affichage des boutons des formes
+			bRect.afficher(menu1, FKufi);
+			bCerc.afficher(menu1, FKufi);
+			bTrig.afficher(menu1, FKufi);
+			bPnt.afficher(menu1, FKufi);
 
+			menu1.display();
+		}
 		//Affichage des boutons de couleur
 		
+		if (menuCouleur.hasFocus() || first) {
+			menuCouleur.clear();
+			menuCouleur.draw(fondMenu);
+			BC1.afficher(menuCouleur, FKufi);
+			BC2.afficher(menuCouleur, FKufi);
+			BC3.afficher(menuCouleur, FKufi);
+			BC4.afficher(menuCouleur, FKufi);
+			BC5.afficher(menuCouleur, FKufi);
+			BC6.afficher(menuCouleur, FKufi);
+			BC7.afficher(menuCouleur, FKufi);
+			BC8.afficher(menuCouleur, FKufi);
+			BC9.afficher(menuCouleur, FKufi);
+			BC10.afficher(menuCouleur, FKufi);
+			BC11.afficher(menuCouleur, FKufi);
+			BC12.afficher(menuCouleur, FKufi);
+			BR.afficher(menuCouleur, FKufi);
+			BG.afficher(menuCouleur, FKufi);
+			BB.afficher(menuCouleur, FKufi);
+			BA.afficher(menuCouleur, FKufi);
+			BRd.afficher(menuCouleur, FKufi);
+			BRg.afficher(menuCouleur, FKufi);
+			BBg.afficher(menuCouleur, FKufi);
+			BBd.afficher(menuCouleur, FKufi);
+			BGd.afficher(menuCouleur, FKufi);
+			BGg.afficher(menuCouleur, FKufi);
+			BAd.afficher(menuCouleur, FKufi);
+			BAg.afficher(menuCouleur, FKufi);
+			menuCouleur.draw(RectValid);
+			BV.afficher(menuCouleur, FKufi);
+			menuCouleur.draw(rgb);
 
-		menuCouleur.clear();
-		menuCouleur.draw(fondMenu);
-		BC1.afficher(menuCouleur, FKufi);
-		BC2.afficher(menuCouleur, FKufi);
-		BC3.afficher(menuCouleur, FKufi);
-		BC4.afficher(menuCouleur, FKufi);
-		BC5.afficher(menuCouleur, FKufi);
-		BC6.afficher(menuCouleur, FKufi);
-		BC7.afficher(menuCouleur, FKufi);
-		BC8.afficher(menuCouleur, FKufi);
-		BC9.afficher(menuCouleur, FKufi);
-		BC10.afficher(menuCouleur, FKufi);
-		BC11.afficher(menuCouleur, FKufi);
-		BC12.afficher(menuCouleur, FKufi);
-		BR.afficher(menuCouleur, FKufi);
-		BG.afficher(menuCouleur, FKufi);
-		BB.afficher(menuCouleur, FKufi);
-		BRd.afficher(menuCouleur, FKufi);
-		BRg.afficher(menuCouleur, FKufi);
-		BBg.afficher(menuCouleur, FKufi);
-		BBd.afficher(menuCouleur, FKufi);
-		BGd.afficher(menuCouleur, FKufi);
-		BGg.afficher(menuCouleur, FKufi);
-		menuCouleur.draw(RectValid);
-		BV.afficher(menuCouleur, FKufi);
-		menuCouleur.draw(rgb);
+
+			menuCouleur.display();
+		}
+		// Affichage global de la fenetre du menu
 		
+		if (menu2.hasFocus() || first) {
+			menu2.draw(fondMenu); // Ajout du fond blanc du menu
+			bRot.afficher(menu2, FKufi);
+			bPul.afficher(menu2, FKufi);
+			bRet.afficher(menu2, FKufi);
+			bClig.afficher(menu2, FKufi);
+			menu2.draw(TClig);
+			menu2.draw(TPul);
+			menu2.draw(TCoul);
 
-		menuCouleur.display();
-
-		// Affichage global de la fenetre du menu
-		menu1.display();
-
-
-		menu1.clear();
-		bRot.afficher(menu2, FKufi);
-		bPul.afficher(menu2, FKufi);
-		bRet.afficher(menu2, FKufi);
-		bClig.afficher(menu2, FKufi);
-		menu2.draw(TClig);
-		menu2.draw(TPul);
-		menu2.draw(TCoul);
-
-		// Affichage global de la fenetre du menu
-		menu2.display();
-
+			// Affichage global de la fenetre du menu
+			menu2.display();
+		}
 		// -- test forme --
 
-
+		
 
 		Point p(Vector2f(200, 80));
 		Point pt2(T.getCentre());
@@ -1033,6 +1079,7 @@ int main()
 		
 		//ELBUTTON.afficher(window, FKufi, Color::Black);
 		window.display();
+		first = false;
 	}
 
 	return 0;

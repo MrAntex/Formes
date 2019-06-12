@@ -257,6 +257,30 @@ void Formes::resetCoul() {
 			formes[i]->setColor(formes[i]->getColor2());
 	}
 }
+
+void Formes::monterForme(Forme* forme) {
+	for (size_t i = 0; i < nbFormes; i++) {
+		if (formes[i] == forme && i > 0) {
+			Forme* tmp;
+			tmp = formes[i];
+			formes[i] = formes[i - 1];
+			formes[i - 1] = tmp;
+			break;
+		}
+	}
+}
+
+void Formes::descendreForme(Forme* forme) {
+	for (size_t i = 0; i < nbFormes; i++) {
+		if (formes[i] == forme && i < nbFormes-1) {
+			Forme* tmp = formes[i];
+			formes[i] = formes[i + 1];
+			formes[i + 1] = tmp;
+			cout << "descente";
+			break;
+		}
+	}
+}
 /*
 void Formes::sauver(ostream &os) const
 {

@@ -54,6 +54,8 @@ public:
 
 	inline void setEpaiss(uint ep) { epaiss = ep; }
 
+	inline void setBEpaiss(uint ep) { b_epaiss = ep; }
+
 	inline void setCoulBord(Color bordure) { coulBord = bordure; }
 
 	inline void setCoulBord2(Color bordure) { coulBord2 = bordure; }

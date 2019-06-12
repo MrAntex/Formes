@@ -21,7 +21,9 @@ void Rectangle::dessiner(RenderWindow& fenetre, bool isactive) const
 		R.setOutlineThickness(getEpaiss());
 		R.setOutlineColor(getCoulBord());
 		fenetre.draw(R);
-		Forme::dessiner(fenetre, isactive);
+
+		Point pt_mod(Vector2f(getPoint().getAncre().x + LH.x, getPoint().getAncre().y + LH.y));
+		pt_mod.dessiner(fenetre, isactive);
 }
 
 bool Rectangle::isOver(Vector2f curseur)

@@ -42,6 +42,7 @@ void Ellipse::dessiner(RenderWindow& fenetre, bool isactive) const
 	Forme::dessiner(fenetre, isactive);
 }
 
+
 bool Ellipse::isOver(Vector2f curseur)
 {
 	Vector2f ancre2 = Vector2f(getPoint().getAncre().x + 8, getPoint().getAncre().y + 8);
