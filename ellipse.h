@@ -1,25 +1,45 @@
 #pragma once
-#ifndef DEF_TRIANGLE
-#define DEF_TRIANGLE
+#ifndef DEF_ELLIPSE
+#define DEF_ELLIPSE
 
-#include "cercle.h"
+#include "Forme.h"
+#include "EllipseShape.h"
+
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-#include <istream>
-#include <ostream>
+class Ellipse : public Forme
+{
+	Vector2f taille;
 
-using namespace sf;
+public:
+
+	Ellipse(Point _ancre, Vector2f _taille, Color coul);
+
+	//Ellipse(istream& is);
+
+	Ellipse(Ellipse const& orig);
 
 
-class Ellipse : public Cercle {
+	//Destructeur
+	~Ellipse() override;
 
-	
+	//Sauvegarder/charger
+	//virtual void ecrire(ostream& os);
 
+	//Couleur statique
+	inline virtual void  move(Vector2f mouse) { setPoint(mouse - taille); };
 
+	inline void setTaille(Vector2f _taille) { taille = _taille; };
 
+	void dessiner(RenderWindow& fenetre, bool isactive = false) const override;
 
+	virtual bool isOver(Vector2f curseur);
+
+	inline virtual bool modif(Vector2f curseur);
+
+	virtual Vector2f Size(Vector2f curseur);
 };
 #endif

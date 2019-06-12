@@ -14,7 +14,7 @@ typedef unsigned int uint;
 
 class Point
 {
-	/*static*/ float /*const*/ taille = 5.0f;
+	/*static*/ float /*const*/ taille = 8.0f;
 	Vector2f ancre;
 	Color couleur = Color::Black;
 	Color deux_couleur = Color::Red;

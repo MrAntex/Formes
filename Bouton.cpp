@@ -3,12 +3,12 @@
 
 using namespace sf;
 
-Bouton::Bouton(Vector2f _ancre, Vector2f _taille, String _texte, Color _couleur, Color _sec_couleur, int _eppaisseur, unsigned int pos ) {
+Bouton::Bouton(Vector2f _ancre, Vector2f _taille, String _texte, Color _couleur, Color _sec_couleur, int _eppaisseur, unsigned int pos, Color coul_plein ) {
 	bout.setPosition(_ancre);
 	bout.setSize(_taille);
 	bout.setOutlineColor(_couleur);
 	bout.setOutlineThickness(_eppaisseur);
-	bout.setFillColor(Color::Transparent);
+	bout.setFillColor(coul_plein);
 
 	texte = _texte;
 	couleur = _couleur;

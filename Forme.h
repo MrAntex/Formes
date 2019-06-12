@@ -13,8 +13,14 @@ using namespace std;
 
 class Forme  {
 
-	Color couleur;
+	
 	Point  pt;
+	bool rempli;
+	bool flash, pulse, a_coul;
+	uint epaiss, b_epaiss;
+
+protected:
+	Color couleur, couleur2, coulBord, coulBord2;
 
 public:
 
@@ -26,17 +32,67 @@ public:
 
 	inline Color getColor() const { return couleur; };
 
-	inline Color setColor(Color _coul) { couleur = _coul; };
+	inline Color getColor2() const { return couleur2; };
 
-	inline void  move(Vector2f mouse) { pt.setAncre(mouse); };
+	inline bool getRempli() const { return rempli; }
+
+	inline uint getEpaiss() const { return epaiss; }
+
+	inline uint getBEpaiss() const { return b_epaiss; }
+
+	inline Color getCoulBord() const { return coulBord; }
+
+	inline Color getCoulBord2() const { return coulBord2; }
+
+	inline Point const& getPoint() const { return pt; };
+
+	inline bool getCligno() const { return flash; }
+
+	inline bool getPulse() const { return pulse; }
+
+	inline bool getCoul() const { return a_coul; }
+
+	inline void setEpaiss(uint ep) { epaiss = ep; }
+
+	inline void setBEpaiss(uint ep) { b_epaiss = ep; }
+
+	inline void setCoulBord(Color bordure) { coulBord = bordure; }
+
+	inline void setCoulBord2(Color bordure) { coulBord2 = bordure; }
+
+	inline void setColor(Color _coul) { couleur = _coul; }
+
+	inline void setColor2(Color _coul) { couleur2 = _coul; }
+
+	virtual inline void  move(Vector2f mouse) = 0;
+
+	inline void setPoint(Vector2f curseur) { pt.setAncre(curseur); };
+
+	void swaPlein(); // REDESSINER APRES
 
 	//inline void fillForme(Shape) {};
 
-	inline Point const & getPoint() const { return pt; };
+
+	inline void cligno() { flash = !flash; }
+
+	inline void pul() { pulse = !pulse; }
+
+	inline void coul() { 
+		if (a_coul) {
+			setColor(getColor2());
+		}
+		a_coul = !a_coul; 
+	}
+
+	
 	
 	virtual void dessiner(RenderWindow& fenetre, bool isactive = false)const;
 
-	bool isOver(Vector2f curseur);
+	virtual bool isOver(Vector2f curseur) = 0;
+
+	virtual bool modif(Vector2f curseur) = 0;
+
+	virtual Vector2f Size(Vector2f curseur) = 0;
 
 
 };

@@ -11,7 +11,7 @@ Point::Point(Vector2f _ancre) : ancre(_ancre), couleur(sf::Color::Black)
 Point::Point(const Point& orig) : ancre(orig.ancre){}
 
 Point::~Point() {}
-
+/*
 bool Point::isOver(Vector2f _ancre) const
 {
 	
@@ -19,7 +19,7 @@ bool Point::isOver(Vector2f _ancre) const
 	float dy = (ancre.y >= _ancre.y ? ancre.y - _ancre.y : _ancre.x - ancre.y);
 
 	return (dx <= taille && dy <= taille);
-}
+}*/
 
 
 void Point::dessiner(RenderWindow& fenetre, bool isactive) const

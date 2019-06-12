@@ -26,13 +26,21 @@ public:
 	Cercle(Cercle const& orig);
 
 	//Destructeur
-	~Cercle();
+	~Cercle() override;
 
 	//Couleur statique
 
 	inline void setTaille(float t) { taille = t; };
 
-	virtual void dessiner(sf::RenderWindow& fenetre, bool isactive = false) const;
+	inline virtual void  move(Vector2f mouse) { setPoint(Vector2f(mouse.x - taille, mouse.y - taille)); };
+
+	virtual void dessiner(sf::RenderWindow& fenetre, bool isactive = false) const override;
+
+	virtual bool isOver(Vector2f curseur);
+
+	virtual bool modif(Vector2f curseur);
+
+	virtual Vector2f Size(Vector2f curseur);
 
 
 };
