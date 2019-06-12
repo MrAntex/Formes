@@ -5,30 +5,43 @@
 Forme::Forme(Point _pt, Color coul) 
 	: pt(_pt), couleur(coul){}
 
+Forme::Forme(istream & is)
+	: pt(is)
+{
+	is >> couleur.r;
+	is >> couleur.g;
+	is >> couleur.b;
+}
+
 Forme::Forme(Forme const & orig) 
 	: pt(orig.pt), couleur(orig.couleur) {}
 
+
+void Forme::ecrire(ostream & os) const
+{
+	os << couleur.r << " " << couleur.g << " " << couleur.b << " " << pt.getAncre().x << " " << pt.getAncre().y;
+}
+
+Forme* Forme::charger(istream & is)
+{
+	string type;
+	is >> type;
+	if (type == "Rectangle ")
+		return new Rectangle(is);
+	if (type == "Cercle ")
+		return new Cercle(is);
+	if (type == "Triangle ")
+		return new Triangle(is);
+	if (type == "Ellipse ")
+		return new Ellipse(is);
+}
+
+
 Forme::~Forme() {}
 
-bool Forme::isOver(Vector2f curseur)
-{
-	Vector2f ancre2 = Vector2f(pt.getAncre().x + 7 , pt.getAncre().y + 7);
-	if (curseur.x > pt.getAncre().x && curseur.y > pt.getAncre().y && curseur.x < ancre2.x && curseur.y < ancre2.y)
-	{
-		pt.setColor(Color::Blue);
-			cout << "souris";
-			return true;
-		
-	}
-	else
-	{
-		pt.setColor(Color::Black);
-
-		return false;
-	}
-}
 
 void Forme::dessiner(RenderWindow& fenetre, bool isactive) const
 {
 	pt.dessiner(fenetre, isactive);	
 }
+

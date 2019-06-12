@@ -5,20 +5,18 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-#include <istream>
-#include <ostream>
+#include <iostream>
 
 using namespace sf;
+using namespace std;
 	
 typedef unsigned int uint;
 
 class Point
 {
-	/*static*/ float /*const*/ taille = 5.0f;
+	float taille = 8.0f;
 	Vector2f ancre;
 	Color couleur = Color::Black;
-	Color deux_couleur = Color::Red;
-	bool swapped = false;
 
 public:
 	//Différentes initialisations de points
@@ -26,6 +24,8 @@ public:
 
 	//Copie du point
 	Point(Point const& orig);
+	
+	Point(istream &is);
 
 	//Destructeur
 	~Point();
@@ -35,17 +35,12 @@ public:
 	inline Vector2f getAncre()const { return ancre; };
 
 	inline void setTaille(float t) { taille = t; };
+	inline Vector2f setX(float _ancre) { ancre.x = _ancre; };
+	inline Vector2f setY(float _ancre) { ancre.y = _ancre; };
 
 	void setAncre(Vector2f _ancre) { ancre = _ancre; };
 
-	void setColor(Color coul) { couleur = coul; }
-
-	bool isOver(Vector2f _ancre) const;
-
 	void dessiner(RenderWindow& fenetre, bool isactive = false) const;
-
-	inline void swapCoul();
-	
 
 };
 

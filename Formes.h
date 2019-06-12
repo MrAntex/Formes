@@ -28,8 +28,12 @@ public:
 
 	Forme *isOver(Vector2f curseur);
 
-	//void sauver(ostream &os) const;
-	//void charger(istream &is);
-};
+	Forme *modif(Vector2f curseur);
+	
+	void sauver(ostream &os) const;
+	void charger(istream &is);
+	
 
+	friend ostream & operator<<(ostream & os, Forme forme);
+};
 #endif

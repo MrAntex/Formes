@@ -1,4 +1,3 @@
-#include <SFML/Graphics.hpp>
 #include "Formes.h"
 
 
@@ -20,18 +19,13 @@ Formes::~Formes()
 
 void Formes::ajouter(Forme*forme)
 {
-	try {
-		if (nbFormes >= maxFormes)
-		{
-			throw runtime_error("plus de place");
-		}
-		else
-		{
-			formes[nbFormes++] = forme;
-		}
+	if (nbFormes >= maxFormes)
+	{
+		throw runtime_error("plus de place");
 	}
-	catch (runtime_error e) {
-		cout << "Error de place";
+	else
+	{
+		formes[nbFormes++] = forme;
 	}
 }
 
@@ -55,7 +49,19 @@ Forme *Formes::isOver(Vector2f curseur)
 	return nullptr;
 }
 
-/*
+Forme *Formes::modif(Vector2f curseur)
+{
+	for (size_t i = 0; i < nbFormes; i++)
+	{
+		if (formes[i]->modif(curseur))
+		{
+			return formes[i];
+		}
+	}
+	return nullptr;
+}
+
+
 void Formes::sauver(ostream &os) const
 {
 	os << maxFormes << endl;
@@ -86,5 +92,14 @@ void Formes::charger(istream &is)
 	{
 		ajouter(Forme::charger(is));
 	}
+}
+/*
+ostream & operator<<(ostream & os, Forme forme)
+{
+	os << forme.getPoint().getAncre().x;
+	os << forme.getPoint().getAncre().y;
+	os << forme.
+
+	return os;
 }
 */
