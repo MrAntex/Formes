@@ -23,7 +23,7 @@ class Bouton
 	public:
 
 		//constructeurs
-		Bouton(Vector2f _ancre, Vector2f _taille, String _texte = "", Color _couleur = Color::Blue, Color _sec_couleur = Color::Yellow, int _eppaisseur = 4,unsigned int pos = 2);
+		Bouton(Vector2f _ancre, Vector2f _taille, String _texte = "", Color _couleur = Color::Blue, Color _sec_couleur = Color::Yellow, int _eppaisseur = 4,unsigned int pos = 2, Color coul_plein = Color::Transparent);
 		Bouton( const Bouton& orig );
 
 		//destructeur
